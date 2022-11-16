@@ -8,13 +8,13 @@ const Home = () => {
 
 
     return (
-        <>
+        <Container>
             <Container
                 className="bg-image p-5 text-center shadow-1-strong rounded mb-5 mt-4" style={{
 
                     backgroundImage: 'url(https://images.unian.net/photos/2022_08/thumb_files/1200_0_1661244119-5886.png)',
                     backgroundSize: "cover"
-                    
+
                 }}>
                 <Container
                 >
@@ -230,7 +230,7 @@ const Home = () => {
             </Container>
 
 
-        </>
+        </Container>
     );
 }
 export default Home;

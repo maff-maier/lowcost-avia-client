@@ -1,0 +1,13 @@
+.main-navigation .nav-link:hover {
+    background-color: #d3dce5;
+}
+
+.main-navigation .nav-link.active {
+    background-color: #343a40;
+    color: #fff;
+}
+
+.main-navigation .nav-link {
+    background-color: #fff;
+    color: #343a40;
+}

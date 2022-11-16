@@ -1,11 +1,12 @@
 import React from 'react';
-import { CDBFooter, CDBFooterLink, CDBBtn, CDBIcon, CDBContainer, CDBBox } from 'cdbreact';
+import { CDBFooter, CDBBtn, CDBIcon, CDBBox } from 'cdbreact';
 import logo from '/Jv/lowcost_avia/frontend/src/img/logo.png'
 import { Container } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
-        <CDBFooter className="shadow fixed-bottom py-2 text-white" style={{ backgroundColor: '#212529' }}>
+        <CDBFooter className="shadow fixed-bottom py-2 text-white" style={{ backgroundColor: '#343a40' }}>
             <CDBBox
                 display="flex"
                 justifyContent="between"
@@ -14,13 +15,13 @@ const Footer = () => {
                 style={{ width: '80%' }}
             >
                 <CDBBox display="flex" alignItems="center">
-                    <a href="/" className="d-flex align-items-center p-0 text-dark">
+                    <Link to="/" className="d-flex align-items-center p-0 text-dark">
                         <img
                             alt="logo"
                             src={logo}
                             width="30px"
-                        />  
-                    </a>
+                        />
+                    </Link>
                     <Container>
 
                         <small className="">&copy; Avia, 2022. All rights reserved.</small>

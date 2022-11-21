@@ -29,13 +29,13 @@ const Footer = () => {
                 </CDBBox>
                 <CDBBox display="flex">
                     <CDBBtn outline color="white" className="mx-3 p-2">
-                        <a href="https://www.instagram.com/andrushapyro/" target="_blank" display="none">
+                        <a href="https://www.instagram.com/andrushapyro/" target="_blank" display="none" rel="noreferrer">
                             <CDBIcon fab icon="instagram" />
                         </a>
                     </CDBBtn>
 
                     <CDBBtn outline color="white" className="p-2">
-                        <a href="https://twitter.com/pyrokinezis" target="_blank" display="none">
+                        <a href="https://twitter.com/pyrokinezis" target="_blank" display="none" rel="noreferrer">
 
                             <CDBIcon fab icon="twitter" />
                         </a>

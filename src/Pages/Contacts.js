@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Row, Col, Tab, Nav, Image } from 'react-bootstrap';
+import { Container, Row, Col, Tab, Nav } from 'react-bootstrap';
 import '../style/Contacts.css'
 import spotify from '../img/spotify-logo.png'
 import phone from '../img/phone.png'
@@ -30,6 +30,7 @@ const Contacts = () => {
             <Tab.Content style={{ textAlign: 'center' }}>
               <Tab.Pane eventKey="first">
                 <img
+                alt='terms of the usage'
                   src="https://www.michalsons.com/wp-content/uploads/2014/03/free-website-terms-1-e1518416121438.jpg"
                   style={{ width: '800px' }} />
               </Tab.Pane>
@@ -45,19 +46,23 @@ const Contacts = () => {
               <Tab.Pane eventKey="third">
                 <Container>
                   <h2><a href='tel: 88005553535' style={{ textDecoration: 'none', color: '#343a40' }}>
-                    <img src={phone} style={{ width: '30px' }} />
+                    <img src={phone} alt='phone' style={{ width: '30px' }} />
                     <small>&#x20;&#x20;&#x20;8-800-555-35-35</small>
                   </a>  </h2>
                 </Container>
                 <Container><h2><a
                   href="https://telegram.org/"
                   style={{ textDecoration: 'none', color: '#343a40' }}
-                  target="_blank">Telegram</a></h2></Container>
+                  target="_blank"
+                  alt='telegram'
+                  rel="noreferrer">Telegram</a></h2></Container>
                 <Container><h2><a
                   href="https://instagram.com"
+                  alt='inst'
                   style={{ textDecoration: 'none', color: '#343a40' }}
                   targer="_blank">Instagram</a></h2></Container>
                 <Container><h2><a
+                alt='twi'
                   href='https://twitter.com/'
                   style={{ textDecoration: 'none', color: '#343a40' }}
                   targer="_blank">Twitter</a></h2></Container>

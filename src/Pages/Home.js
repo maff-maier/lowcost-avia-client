@@ -1,13 +1,26 @@
 import React, { useState } from 'react'
 import { Button, Form, Col, Row, FloatingLabel, Container, Card, Image } from 'react-bootstrap'
+import { useNavigate, Link } from 'react-router-dom'
 import search from "../img/search.png"
+require("react-datepicker/dist/react-datepicker.css")
 
 const Home = () => {
 
-    const [date, setDate] = useState(new Date().toLocaleDateString("de-DE"))
+    let date = new Date().toLocaleDateString().split('.')
+
+    const navigate = useNavigate()
+    const navigateToSearch = () => {
+        navigate('/search')
+    }
+
+
+    const setDate = () => {
+        return [date[2], date[1], date[0]].join('-')
+    }
 
 
     return (
+        
         <Container>
             <Container
                 className="bg-image p-5 text-center shadow-1-strong rounded mb-5 mt-4" style={{
@@ -25,7 +38,7 @@ const Home = () => {
                     </Container>
                     <Form className="mt-4">
                         <Container>
-                            <Row className="mb-3">
+                            <Row className="mb-3 ">
                                 <Form.Group as={Col} controlId="formGridFrom">
                                     <FloatingLabel controlId="floatingInput" label="From">
 
@@ -42,13 +55,14 @@ const Home = () => {
 
                                 <Form.Group as={Col} controlId="formGridInlintDate">
                                     <FloatingLabel controlId="floatingInput" label="Date">
-
                                         <Form.Control
-                                            readOnly={true}
-                                            type="text"
-                                            value={date}
-
+                                            type="date"
+                                            autoComplete="off"
+                                            defaultValue={setDate()}
+                                            
+                                            onLoad={(date) => setDate(date)}
                                         />
+
                                     </FloatingLabel>
                                 </Form.Group>
 
@@ -65,8 +79,24 @@ const Home = () => {
 
                                 </Form.Group>
 
+                                <Form.Group as={Col} controlId="formBaggage">
+                                    <FloatingLabel controlId='baggage' label="Baggage" >
+                                        <Form.Select defaultValue="Sit Count">
+                                            <option>No</option>
+                                            <option>Yes</option>
+                                        </Form.Select>
+                                    </FloatingLabel>
+
+                                </Form.Group>
+
                                 <Form.Group as={Col} controlId="formGridSearch">
-                                    <Button variant='dark' type='submit' className="pb-3 btn-lg" style={{ width: "130px", justifyContent: "center" }}>
+                                    <Button
+                                        variant='dark'
+                                        type='submit'
+                                        className="pb-3 btn-lg"
+                                        style={{ justifyContent: "center", width: '150px' }}
+                                        onClick={navigateToSearch}
+                                        to='/search'>
                                         Search
                                     </Button>
                                 </Form.Group>

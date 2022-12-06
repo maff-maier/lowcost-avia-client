@@ -4,8 +4,10 @@ import '../style/Item.css'
 
 const Item = (props) => {
 
+    console.log(props)
+
     return (
-        <Container className="mt-3  item">
+        <Container className="mt-3 item">
             <Container>
                 <Row>
                     <Col>
@@ -13,8 +15,8 @@ const Item = (props) => {
                             <strong>From --- To</strong>
                         </Container>
                         <Container>
-                            Id: {props.num.id}
-                            Number: {props.num.number}
+                            Id: {props.idNum} <br />
+                            Number: {props.number}
                         </Container>
                     </Col>
                     <Col>

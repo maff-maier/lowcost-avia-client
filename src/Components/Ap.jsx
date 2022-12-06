@@ -9,49 +9,74 @@ import Trips from '../Pages/Trips'
 import Search from "../Pages/Search";
 import Footer from "./UI/Footer"
 import '../style/Invalid.css'
+import axios from "axios";
 
 const Ap = () => {
     const [modal, setModal] = useState(false)
-    const [numbers, setNumers] = useState([])
 
-    let [number, setNumber] = useState('+375')
-    
+    const [number, setNumber] = useState("+375")
+    const [pass, setPass] = useState("")
+
+    const [auth, setAuth] = useState(false)
+
+
+
 
 
     const handleClose = () => {
         setModal(false)
-        number = setNumber('+375')
+        setAuth(false)
+
+        setNumber("+375")
+        setPass("")
     }
 
     const validation = (num) => {
-        return validator.isMobilePhone(num)
+        return validator.isMobilePhone(num, 'be-BY')
     }
 
-    const submit = (e) => {
+    const submit = async (e) => {
         e.preventDefault()
-        const obj = {number}
-        console.log(obj)
+        const obj = { number, pass }
 
-        fetch("http://localhost:8080/user/add", {
+
+        const res = await fetch("http://localhost:8080/user", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(obj)
         }
-        ).then(console.log("success"))
+        )
+
+
+        console.log(res)
+        const get = await axios.get("http://localhost:8080/user/getAll")
+
+        console.log(get)
+        if (res.status == 200) {
+            setNumber("+375")
+            setPass("")
+
+            setAuth(true)
+            setModal(false)
+
+            return;
+        }
+
+
+
     }
 
-    useEffect(() => {
-        fetch("http://localhost:8080/user/getAll")
-        .then(res => res.json())
-        .then((result) => {
-            setNumers(result);
-        }
-        )
-    }, [])
+    // useEffect(() => {
+    //     fetch("http://localhost:8080/user/getAll")
+    //     .then(res => res.json())
+    //     .then((result) => {
+    //         setNumers(result);
+    //     }
+    //     )
+    // }, [])
 
-    console.log(numbers)
 
     return (
         <>
@@ -77,13 +102,24 @@ const Ap = () => {
                                 onChange={e => setNumber(e.target.value)} />
                         </Form.Group>
                         {number}
+                        <Form.Group className="mt-3">
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control
+                                className="input"
+                                type="password"
+                                placeholder="Password"
+                                aria-invalid={true}
+                                value={pass}
+                                onChange={e => setPass(e.target.value)} />
+                            {pass}
+                        </Form.Group>
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button
                         variant='dark'
-                        onClick={() => {
-                            validation(number) ? submit() : console.log('not ok')
+                        onClick={(e) => {
+                            validation(number) ? submit(e) : console.log('not ok')
                         }
                         }>
                         Confirm
@@ -91,13 +127,12 @@ const Ap = () => {
                     </Button>
                     <Button variant='outline-secondary' onClick={handleClose}>
                         Close
-
                     </Button>
                 </Modal.Footer>
             </Modal>
 
             <Router>
-                <Navbar sticky="top" collapseOnSelect expand="lg" bg="dark" variant="dark" className="py-3">
+                <Navbar sticky="top" collapseOnSelect expand="lg" bg="dark" variant="dark" className="py-3" style={{ width: '100%' }}>
                     <Container>
                         <Navbar.Brand as={Link} to="/">
                             <img
@@ -120,38 +155,26 @@ const Ap = () => {
                                     <Nav.Link as={Link} to='/trips'>Trips</Nav.Link>
                                 </Nav.Item>
                                 <Nav.Item>
-                                    <Nav.Link onClick={() => setModal(true)}>Log in</Nav.Link>
+                                    {auth
+                                        ? <Nav.Link onClick={() => setAuth(false)}>Log out</Nav.Link>
+                                        : <Nav.Link onClick={() => setModal(true)}>Log in</Nav.Link>}
                                 </Nav.Item>
                             </Nav>
 
                         </Navbar.Collapse>
-
-
                     </Container>
                 </Navbar>
 
                 <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/contacts" element={<Contacts />} />
-                    <Route path="/trips" element={<Trips />} />
-                    <Route path="/search" element={<Search />}/>
+                    <Route exact path="" element={<Home />} />
+                    <Route exact path="/contacts" element={<Contacts />} />
+                    <Route exact path="/trips" element={<Trips />} />
+                    <Route exact path="/search" element={<Search />} />
                 </Routes>
 
+                <Footer />
 
-
-                {//<Footer /> 
-                }
             </Router>
-
-            <div className='container'>
-                {numbers.map((obj, index) => {
-                    return ( <div key={index}>
-                    <h2>Num is {obj.number}</h2>
-                    <h2>id is {obj.id}</h2>
-                    </div>);
-                })}
-            </div>
-
         </>
     );
 }

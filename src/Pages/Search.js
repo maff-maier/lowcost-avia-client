@@ -4,8 +4,13 @@ import Item from '../Components/Item'
 
 const Search = (props) => {
 
+
+  //console.log(props.obj[0].number)
+
   return (
     <Container className='mt-4'>
+
+
 
       <Container>
         <Form className='d-flex'>
@@ -19,17 +24,17 @@ const Search = (props) => {
         </Form>
       </Container>
 
-      {/* <Container className='mt-5 mb-5'>
-        {props.numbers.map((num, index) => {
+      <Container className='mt-5 mb-5'>
+        {props.obj.map((num, id) => {
           return (
-            <Container key={index}>
-              Name: {props.num.num}
-              Id: {props.num.id}
+            <Container key={id}>
+              {//<Item number={num.number} idNum={num.id}/>
+              }
 
             </Container>
           )
         })}
-      </Container> */}
+      </Container>
     </Container>
   )
 }

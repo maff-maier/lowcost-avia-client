@@ -40,27 +40,26 @@ const Home = () => {
                         <Container>
                             <Row className="mb-3 ">
                                 <Form.Group as={Col} controlId="formGridFrom">
-                                    <FloatingLabel controlId="floatingInput" label="From">
+                                    <FloatingLabel controlId="from" label="From">
 
                                         <Form.Control type="text" placeholder='From' autoComplete="off" />
                                     </FloatingLabel>
                                 </Form.Group>
 
                                 <Form.Group as={Col} controlId="formGridTo">
-                                    <FloatingLabel controlId="floatingInput" label="To">
+                                    <FloatingLabel controlId="to" label="To">
 
                                         <Form.Control type="text" placeholder='To' autoComplete="off" />
                                     </FloatingLabel>
                                 </Form.Group>
 
                                 <Form.Group as={Col} controlId="formGridInlintDate">
-                                    <FloatingLabel controlId="floatingInput" label="Date">
+                                    <FloatingLabel controlId="date" label="Date">
                                         <Form.Control
                                             type="date"
                                             autoComplete="off"
                                             defaultValue={setDate()}
                                             
-                                            onLoad={(date) => setDate(date)}
                                         />
 
                                     </FloatingLabel>

@@ -1,15 +1,26 @@
-import React from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Ap from "./Components/Ap"
+import React from 'react'
+import Users from './Pages/Users'
+import Planes from './Pages/Planes'
+import Routs from './Pages/Routes'
+import Orders from './Pages/Orders'
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
+import NewNavbar from './Components/NewNavbar'
 
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <Ap />
+    <Router>
 
-    </div>
-  );
+      <NewNavbar />
+      
+      <Routes>
+        <Route path='/' element={<Users />} />
+        <Route path='/planes' element={<Planes />} />
+        <Route path='/routes' element={<Routs />} />
+        <Route path='/orders' element={<Orders />} />
+      </Routes>
+    </Router>
+  )
 }
 
-export default App;
+export default App
